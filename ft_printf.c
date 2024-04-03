@@ -25,14 +25,54 @@ int ft_printf(char const * input, ...)
 		if(input[i] == '%')
 		{
 			i++;
-			if(input[i] == 's')
+			if(input[i] == 'c')
+			{
+				ft_putchar_fd((char) va_arg(args, int), 1);
+				i++;
+			}
+			else if(input[i] == 'd')
+			{
+				ft_putnbr_fd(va_arg(args, int), 1);
+				i++;
+			}
+			else if(input[i] == 'i')
+			{
+				ft_putnbr_fd(va_arg(args, int), 1);
+				i++;
+			}
+			else if(input[i] == 'u')
+			{
+				ft_putnbr_fd(va_arg(args, unsigned int), 1);
+				i++;
+			}
+			else if(input[i] == 'x')
+			{
+				ft_putnbr_base_fd(va_arg(args, unsigned int), "0123456789abcdef", 1);
+				i++;
+			}
+			else if(input[i] == 'X')
+			{
+				ft_putnbr_base_fd(va_arg(args, unsigned int), "0123456789ABCDEF", 1);
+				i++;
+			}
+			else if(input[i] == 'p')
+			{
+				ft_putstr_fd("0x", 1);
+				ft_putnbr_base_fd(va_arg(args, unsigned long), "0123456789abcdef", 1);
+				i++;
+			}
+			else if(input[i] == '%')
+			{
+				ft_putchar_fd('%', 1);
+				i++;
+			}
+			else if(input[i] == 's')
 			{
 				var_str = va_arg(args, char *);
-				//printf("var_str: %s\n", var_str);
-				//printf("ft_strlen: %d\n", ft_strlen(var_str));
 				ft_putstr_fd(var_str, 1);
-				i++; // Increment the input pointer
+				i++;
 			}
+			
 		}
 		ft_putchar_fd((char) input[i], 1);
 		i++;
