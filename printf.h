@@ -14,9 +14,12 @@
 # define PRINTF_H
 
 # include <stddef.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include "ft_libc/libft.h"
+
+int ft_printf(char const * input, ...);
 
 #endif

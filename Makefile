@@ -14,11 +14,11 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-CFILES = 
+CFILES = ft_printf.c
 
 OFILES = $(CFILES:.c=.o)
 
-NAME = libft.a
+NAME = printf.a
 
 #rules
 all: $(NAME)
