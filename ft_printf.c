@@ -28,17 +28,15 @@ int ft_printf(char const * input, ...)
 			if(input[i] == 's')
 			{
 				var_str = va_arg(args, char *);
-				printf("var_str: %s\n", var_str);
-				printf("ft_strlen: %d\n", ft_strlen(var_str));
+				//printf("var_str: %s\n", var_str);
+				//printf("ft_strlen: %d\n", ft_strlen(var_str));
 				ft_putstr_fd(var_str, 1);
 				i++; // Increment the input pointer
 			}
 		}
-		else
-		{
-			ft_putchar_fd((char) input[i], 1);
-			i++;
-		}
+		ft_putchar_fd((char) input[i], 1);
+		i++;
+		
 	}
 	va_end(args);
 	return (0);
