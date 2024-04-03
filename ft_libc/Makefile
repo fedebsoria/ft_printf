@@ -6,7 +6,7 @@
 #    By: fsoria <fsoria@student.42malaga.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/07 17:15:51 by fsoria            #+#    #+#              #
-#    Updated: 2024/03/01 14:34:03 by fsoria           ###   ########.fr        #
+#    Updated: 2024/04/03 15:15:28 by fsoria           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ ft_lstadd_back.c \
 ft_lstclear.c \
 ft_lstiter.c \
 ft_lstmap.c \
-ft_lstdelone.c
+ft_lstdelone.c \
+ft_putnbr_base_fd.c \
 
 OFILES = $(CFILES:.c=.o)
 

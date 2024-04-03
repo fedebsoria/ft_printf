@@ -6,7 +6,7 @@
 /*   By: fsoria <fsoria@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:15:44 by fsoria            #+#    #+#             */
-/*   Updated: 2024/03/01 16:52:16 by fsoria           ###   ########.fr       */
+/*   Updated: 2024/04/03 15:05:55 by fsoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
+void				ft_putnbr_base_fd(unsigned long nbr, char *base, int fd);
 
 #endif
