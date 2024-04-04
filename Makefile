@@ -58,11 +58,13 @@ ft_libc/ft_lstclear.c \
 ft_libc/ft_lstiter.c \
 ft_libc/ft_lstmap.c \
 ft_libc/ft_lstdelone.c \
-ft_libc/ft_putnbr_base_fd.c
+ft_libc/ft_putnbr_base_fd.c \
+ft_libc/ft_printf_aux.c \
+ft_libc/ft_printf_aux_b.c
 
 OFILES = $(CFILES:.c=.o)
 
-NAME = printf.a
+NAME = libftprintf.a
 
 #rules
 all: $(NAME)

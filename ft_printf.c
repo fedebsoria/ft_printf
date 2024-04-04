@@ -10,73 +10,54 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-int ft_printf(char const * input, ...)
-{   
-	int i;
-	char *var_str;
-	va_list args;
-	va_start(args, input);
+t_handler	g_handlers[] = {
+{'c', handle_char},
+{'d', handle_int},
+{'i', handle_int},
+{'u', handle_uint},
+{'x', handle_hex},
+{'X', handle_hex_mayus},
+{'p', handle_ptr},
+{'s', handle_str},
+{'%', handle_percent},
+{'\0', NULL}
+};
 
-	i = 0;
-	while(input[i] != '\0')
+void	handle_format(char format, va_list args)
+{
+	int			j;
+
+	j = 0;
+	while (g_handlers[j].c != '\0')
 	{
-		if(input[i] == '%')
+		if (g_handlers[j].c == format)
+		{
+			g_handlers[j].func(args);
+			break ;
+		}
+		j++;
+	}
+}
+
+int	ft_printf(char const *input, ...)
+{
+	int		i;
+	va_list	args;
+
+	va_start(args, input);
+	i = 0;
+	while (input[i] != '\0')
+	{
+		if (input[i] == '%')
 		{
 			i++;
-			if(input[i] == 'c')
-			{
-				ft_putchar_fd((char) va_arg(args, int), 1);
-				i++;
-			}
-			else if(input[i] == 'd')
-			{
-				ft_putnbr_fd(va_arg(args, int), 1);
-				i++;
-			}
-			else if(input[i] == 'i')
-			{
-				ft_putnbr_fd(va_arg(args, int), 1);
-				i++;
-			}
-			else if(input[i] == 'u')
-			{
-				ft_putnbr_fd(va_arg(args, unsigned int), 1);
-				i++;
-			}
-			else if(input[i] == 'x')
-			{
-				ft_putnbr_base_fd(va_arg(args, unsigned int), "0123456789abcdef", 1);
-				i++;
-			}
-			else if(input[i] == 'X')
-			{
-				ft_putnbr_base_fd(va_arg(args, unsigned int), "0123456789ABCDEF", 1);
-				i++;
-			}
-			else if(input[i] == 'p')
-			{
-				ft_putstr_fd("0x", 1);
-				ft_putnbr_base_fd(va_arg(args, unsigned long), "0123456789abcdef", 1);
-				i++;
-			}
-			else if(input[i] == '%')
-			{
-				ft_putchar_fd('%', 1);
-				i++;
-			}
-			else if(input[i] == 's')
-			{
-				var_str = va_arg(args, char *);
-				ft_putstr_fd(var_str, 1);
-				i++;
-			}
-			
+			handle_format(input[i], args);
+			i++;
 		}
 		ft_putchar_fd((char) input[i], 1);
 		i++;
-		
 	}
 	va_end(args);
 	return (0);

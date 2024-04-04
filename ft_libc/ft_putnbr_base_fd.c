@@ -12,15 +12,18 @@
 
 #include "libft.h"
 
-void ft_putnbr_base_fd(unsigned long nbr, char *base, int fd)
+void	ft_putnbr_base_fd(unsigned long nbr, char *base, int fd)
 {
-    unsigned long base_len = 0;
-    while (base[base_len] != '\0') base_len++;
+	unsigned long	base_len;
+	char			c;
 
-    if (nbr >= base_len)
-    {
-        ft_putnbr_base_fd(nbr / base_len, base, fd);
-    }
-    char c = base[nbr % base_len];
-    write(fd, &c, 1);
+	base_len = 0;
+	while (base[base_len] != '\0')
+		base_len++;
+	if (nbr >= base_len)
+	{
+		ft_putnbr_base_fd(nbr / base_len, base, fd);
+	}
+	c = base[nbr % base_len];
+	write(fd, &c, 1);
 }

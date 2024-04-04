@@ -6,7 +6,7 @@
 /*   By: fsoria <fsoria@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:15:44 by fsoria            #+#    #+#             */
-/*   Updated: 2024/04/03 15:05:55 by fsoria           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:41:45 by fsoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,22 @@
 # define LIBFT_H
 
 # include <stddef.h>
-# include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct s_handler
+{
+	char	c;
+	void	(*func)(va_list args);
+}	t_handler;
 
 int					ft_isalpha(int c);
 int					ft_isdigit(int d);
@@ -69,5 +77,13 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_putnbr_base_fd(unsigned long nbr, char *base, int fd);
+void				handle_str(va_list args);
+void				handle_hex_mayus(va_list args);
+void				handle_hex(va_list args);
+void				handle_uint(va_list args);
+void				handle_int(va_list args);
+void				handle_char(va_list args);
+void				handle_ptr(va_list args);
+void				handle_percent(va_list args);
 
 #endif
