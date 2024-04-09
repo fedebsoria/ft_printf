@@ -53,11 +53,18 @@ int	ft_printf(char const *input, ...)
 		if (input[i] == '%')
 		{
 			i++;
+			if (input[i] != 'c' && input[i] != 's' && input[i] != 'p' \
+			&& input[i] != 'd' && input[i] != 'i' && input[i] != 'u' \
+			&& input[i] != 'x' && input[i] != 'X' && input[i] != '%')
+				return (-1);
 			handle_format(input[i], args);
 			i++;
 		}
+		else
+		{
 		ft_putchar_fd((char) input[i], 1);
 		i++;
+		}
 	}
 	va_end(args);
 	return (0);

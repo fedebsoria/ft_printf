@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_printf_aux_b.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsoria <fsoria@student.42malaga.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/27 11:16:56 by fsoria            #+#    #+#             */
-/*   Updated: 2024/02/27 11:16:56 by fsoria           ###   ########.fr       */
+/*   Created: 2024/04/03 17:12:39 by fsoria            #+#    #+#             */
+/*   Updated: 2024/04/03 17:12:39 by fsoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	handle_ptr(va_list args)
 {
-	int	i;
+	ft_putstr_fd("0x", 1);
+	ft_putnbr_base_fd(va_arg(args, unsigned long), \
+	"0123456789abcdef", 1);
+}
 
-	i = 0;
-	if (s == NULL || fd < 0)
-		return ;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	write(fd, "\n", 1);
+void	handle_str(va_list args)
+{
+	char	*var_str;
+
+	var_str = va_arg(args, char *);
+	ft_putstr_fd (var_str, 1);
+}
+
+void	handle_percent(va_list args)
+{
+	(void)args;
+	ft_putchar_fd('%', 1);
 }
