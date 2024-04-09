@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-t_handler	g_handlers[] = {
+static const t_handler	g_handlers[] = {
 {'c', handle_char},
 {'d', handle_int},
 {'i', handle_int},
@@ -62,8 +62,8 @@ int	ft_printf(char const *input, ...)
 		}
 		else
 		{
-		ft_putchar_fd((char) input[i], 1);
-		i++;
+			ft_putchar_fd((char) input[i], 1);
+			i++;
 		}
 	}
 	va_end(args);
